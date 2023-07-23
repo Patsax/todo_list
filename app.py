@@ -43,15 +43,17 @@ my_list.pack(side=LEFT, fill=BOTH)
 # for item in stuff:
 #     my_list.insert(END, item)
 
+
+#  Layout window elements
 # create scrollbar
 my_scrollbar = Scrollbar(my_frame)
 my_scrollbar.pack(side=RIGHT, fill=BOTH)
 
-# add scrollbar
+# add scrollbar to window
 my_list.config(yscrollcommand=my_scrollbar.set)
 my_scrollbar.config(command=my_list.yview)
 
-# entry box to add items to list
+# add entry box to add items to list
 my_entry = Entry(root, font=("Freestyle", 24), width=24)
 my_entry.pack(pady=20)
 
