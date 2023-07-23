@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter.font import Font
 from tkinter import filedialog
+import pickle
 
 root = Tk()
 root.title("My ToDo List")
@@ -94,8 +95,32 @@ def delete_crossed():
 
 def save_list():
     file_name = filedialog.asksaveasfilename(
-        initialdir="C:/gui/data"
+        initialdir="C:/gui/data",
+        title="Save File",
+        filetypes=(("Dat Files", "*.dat"), ("All Files", "*.*"))
     )
+    if file_name:
+        if file_name.endswith(".dat"):
+            pass
+        else:
+            file_name = f'{file_name}.dat'
+        
+        # delete crossed items before saving
+        count = 0
+        while count < my_list.size():
+            if my_list.itemcget(count, "fg") == "#dedede":
+                my_list.delete(my_list.index(count))
+            else:
+                count += 1
+        
+        # get all the things from the list
+        things = my_list.get(0, END)
+        
+        # open file
+        output_file = open(file_name, 'wb')
+        
+        # add things to file
+        pickle.dump(things, output_file)
 
 
 def open_list():
