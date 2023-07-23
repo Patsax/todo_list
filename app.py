@@ -32,16 +32,16 @@ my_list = Listbox(
 my_list.pack(side=LEFT, fill=BOTH)
 
 # create dummy list
-stuff = [
-    "Walk the dog",
-    "Buy Groceries",
-    "Take a nap",
-    "Learn Tkinter",
-    "Rule the world",
-]
+# stuff = [
+#     "Walk the dog",
+#     "Buy Groceries",
+#     "Take a nap",
+#     "Learn Tkinter",
+#     "Rule the world",
+# ]
 # add dummy list to listbox
-for item in stuff:
-    my_list.insert(END, item)
+# for item in stuff:
+#     my_list.insert(END, item)
 
 # create scrollbar
 my_scrollbar = Scrollbar(my_frame)
