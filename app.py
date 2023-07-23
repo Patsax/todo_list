@@ -1,6 +1,7 @@
 # import modules
 from tkinter import *
 from tkinter.font import Font
+from tkinter import filedialog
 
 root = Tk()
 root.title("My ToDo List")
@@ -87,10 +88,36 @@ def delete_crossed():
     while count < my_list.size():
         if my_list.itemcget(count, "fg") == "#dedede":
             my_list.delete(my_list.index(count))
-
         else:
             count += 1
 
+
+def save_list():
+    file_name = filedialog.asksaveasfilename(
+        initialdir="C:/gui/data"
+    )
+
+
+def open_list():
+    pass
+
+
+def delete_list():
+    my_list.delete(0, END)
+
+
+# create menu
+my_menu = Menu(root)
+root.config(menu=my_menu)
+
+# add selections to menu
+file_menu = Menu(my_menu, tearoff=False)
+my_menu.add_cascade(label="File", menu=file_menu)
+# add dropdown items to menu selections
+file_menu.add_command(label="Save List", command=save_list)
+file_menu.add_command(label="Open List", command=open_list)
+file_menu.add_separator()
+file_menu.add_command(label="Clear List", command=delete_list)
 
 # add buttons
 delete_button = Button(button_frame, text="Delete Item", command=delete_item)
