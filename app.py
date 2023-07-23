@@ -50,7 +50,7 @@ my_list.config(yscrollcommand=my_scrollbar.set)
 my_scrollbar.config(command=my_list.yview)
 
 # entry box to add items to list
-my_entry = Entry(root, font=("Freestyle"))
+my_entry = Entry(root, font=("Freestyle", 24), width=24)
 my_entry.pack(pady=20)
 
 # create button frame
@@ -88,7 +88,8 @@ def delete_crossed():
         if my_list.itemcget(count, "fg") == "#dedede":
             my_list.delete(my_list.index(count))
 
-        count += 1
+        else:
+            count += 1
 
 
 # add buttons
