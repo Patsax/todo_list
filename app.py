@@ -97,14 +97,14 @@ def save_list():
     file_name = filedialog.asksaveasfilename(
         initialdir="C:/gui/data",
         title="Save File",
-        filetypes=(("Dat Files", "*.dat"), ("All Files", "*.*"))
+        filetypes=(("Dat Files", "*.dat"), ("All Files", "*.*")),
     )
     if file_name:
         if file_name.endswith(".dat"):
             pass
         else:
-            file_name = f'{file_name}.dat'
-        
+            file_name = f"{file_name}.dat"
+
         # delete crossed items before saving
         count = 0
         while count < my_list.size():
@@ -112,19 +112,36 @@ def save_list():
                 my_list.delete(my_list.index(count))
             else:
                 count += 1
-        
+
         # get all the things from the list
         things = my_list.get(0, END)
-        
+
         # open file
-        output_file = open(file_name, 'wb')
-        
+        output_file = open(file_name, "wb")
+
         # add things to file
         pickle.dump(things, output_file)
 
 
 def open_list():
-    pass
+    file_name = filedialog.askopenfilename(
+        initialdir="C:/gui/data",
+        title="Open File",
+        filetypes=(("Dat Files", "*.dat"), ("All Files", "*.*")),
+    )
+    if file_name:
+        # delete current open list
+        my_list.delete(0, END)
+
+        # open file
+        input_file = open(file_name, "rb")
+
+        # load data fro the file
+        things = pickle.load(input_file)
+
+        # out things to the screen
+        for item in things:
+            my_list.insert(END, item)
 
 
 def delete_list():
